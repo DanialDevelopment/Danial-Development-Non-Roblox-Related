@@ -7,7 +7,6 @@ const client = new Discord.Client({
         Discord.Intents.FLAGS.GUILD_MESSAGE_REACTIONS
     ]
 });
-const roblox = require('noblox.js')
 const chalk = require('chalk')
 const fs = require('fs')
 const config = require('./config.json')
@@ -17,10 +16,6 @@ client.config = config
 require('dotenv').config();
 const cooldowns = new Discord.Collection();
 const moment = require('moment')
-
-roblox.setCookie(process.env.cookie).catch(async err => {
-    console.log(chalk.red('Issue with logging in: ' + err));
-});
 
 fs.readdir('./commands/', async (err, files) => {
     if(err){
@@ -80,3 +75,5 @@ client.on('messageCreate', async (message) => {
 });
 
 client.login(client.config.token)
+
+// Credit to Qbot for the command handler and help command.
